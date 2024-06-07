@@ -4,6 +4,8 @@
 [![GitHub Marketplace][marketplace]][marketplace-status]
 [![Mergify Status][mergify-status]][mergify]
 
+Forked from [KeisukeYamashita/setup-release](https://github.com/KeisukeYamashita/setup-release).
+
 A GitHub Action that downloads a release and provision for later job usage.
 You don't need to download assets and extract, add system pathes, this action will do it for you with very easy configurations.
 
