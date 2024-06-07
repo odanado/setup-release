@@ -1,6 +1,7 @@
 {
   "name": "setup-release",
   "version": "0.0.0",
+  "type": "module",
   "private": true,
   "description": "GitHub Action that downloads a release and provision for later job usage",
   "main": "lib/main.js",
@@ -8,7 +9,7 @@
     "build": "tsc",
     "format": "prettier --write .",
     "format-check": "prettier --check .",
-    "lint": "eslint src/**/*.ts",
+    "lint": "eslint .",
     "package": "ncc build --source-map --license licenses.txt",
     "test": "echo 'run test'",
     "all": "npm run build && npm run format && npm run lint && npm run package && npm test"
