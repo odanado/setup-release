@@ -10,12 +10,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/checkout@v2
-      - run: |
-          npm install
-      - run: |
-          npm run all
+      - uses: actions/checkout@v4
+      - run: npm cu
+      - run: npm run build
+      - run: npm run format-check
+      - run: npm run lint
+      - run: npm run test
+      - run: npm run package
 
   # Check the caching feature.
   test-caching:
