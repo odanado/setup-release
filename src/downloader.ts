@@ -94,7 +94,7 @@ export class Downloader {
           Authorization: `token ${this.cfg.token}`,
         },
       }),
-      fs.createWriteStream(dest)
+      fs.createWriteStream(dest),
     );
 
     core.debug(`Download asset: ${asset.name}`);

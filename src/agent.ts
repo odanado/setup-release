@@ -6,7 +6,7 @@ export type Inputs = DownloaderConfig | ProvisionerConfig;
 export class Agent {
   constructor(
     private downloader: Downloader,
-    private provisioner: Provisioner
+    private provisioner: Provisioner,
   ) {}
 
   async run(): Promise<void> {
