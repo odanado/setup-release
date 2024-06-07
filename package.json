@@ -6,13 +6,12 @@
   "description": "GitHub Action that downloads a release and provision for later job usage",
   "main": "lib/main.js",
   "scripts": {
-    "build": "tsc",
+    "type-check": "tsc --noEmit",
     "format": "prettier --write .",
     "format-check": "prettier --check .",
     "lint": "eslint .",
-    "package": "ncc build --source-map --license licenses.txt",
-    "test": "echo 'run test'",
-    "all": "npm run build && npm run format && npm run lint && npm run package && npm test"
+    "build": "ncc build src/main.ts --source-map --license licenses.txt",
+    "test": "echo 'run test'"
   },
   "repository": {
     "type": "git",
