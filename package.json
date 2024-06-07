@@ -11,7 +11,7 @@
     "format-check": "prettier --check .",
     "lint": "eslint .",
     "build": "ncc build src/main.ts --source-map --license licenses.txt",
-    "test": "echo 'run test'"
+    "test": "vitest"
   },
   "repository": {
     "type": "git",
@@ -36,12 +36,13 @@
   "devDependencies": {
     "@eslint/js": "^9.4.0",
     "@types/eslint__js": "^8.42.3",
-    "@types/node": "^14.14.22",
+    "@types/node": "^20.14.0",
     "@vercel/ncc": "^0.38.1",
     "eslint": "^8.57.0",
     "js-yaml": "^3.14.0",
     "prettier": "^3.3.1",
     "typescript": "^5.4.5",
-    "typescript-eslint": "^7.12.0"
+    "typescript-eslint": "^7.12.0",
+    "vitest": "^1.6.0"
   }
 }
