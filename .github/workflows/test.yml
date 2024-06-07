@@ -1,10 +1,10 @@
-name: 'build-test'
+name: "build-test"
 on:
   pull_request:
   push:
     branches:
       - main
-      - 'releases/*'
+      - "releases/*"
 
 jobs:
   build:
@@ -106,6 +106,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: ./
-        with: 
+        with:
           repository: spinnaker/kleat
       - run: kleat version
