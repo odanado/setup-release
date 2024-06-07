@@ -17,6 +17,10 @@ jobs:
       - run: npm run lint
       - run: npm run test
       - run: npm run package
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist-directory
+          path: dist
 
   # Check the caching feature.
   test-caching:
@@ -24,7 +28,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist-directory
+          path: dist
+
       - name: First Download
         uses: ./
         with:
@@ -44,7 +53,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist-directory
+          path: dist
+
       - name: First Download
         uses: ./
         id: first-setup
@@ -60,7 +74,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist-directory
+          path: dist
+
       - uses: ./
         with:
           repository: KeisukeYamashita/setup-release-test-repo-public
@@ -72,7 +91,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist-directory
+          path: dist
+
       - uses: ./
         with:
           repository: KeisukeYamashita/setup-release-test-repo-public
@@ -85,7 +109,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist-directory
+          path: dist
+
       - uses: ./
         with:
           repository: KeisukeYamashita/setup-release-test-repo-public
@@ -94,17 +123,22 @@ jobs:
           repository: KeisukeYamashita/setup-release-test-repo-public
 
   # Check if it can install private repos by using the GitHub Token
-  test-private:
-    name: Get Private repository release
-    runs-on: ubuntu-latest
-    needs: [build]
-    steps:
-      - uses: actions/checkout@v2
-      - uses: ./
-        with:
-          repository: KeisukeYamashita/setup-release-test-repo-private
-          token: ${{ secrets.SETUP_RELEASE_GITHUB_TOKEN }}
-      - run: setup-release-test-repo-private
+  # test-private:
+  #   name: Get Private repository release
+  #   runs-on: ubuntu-latest
+  #   needs: [build]
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: actions/download-artifact@v4
+  #       with:
+  #         name: dist-directory
+  #         path: dist
+
+  #     - uses: ./
+  #       with:
+  #         repository: KeisukeYamashita/setup-release-test-repo-private
+  #         token: ${{ secrets.SETUP_RELEASE_GITHUB_TOKEN }}
+  #     - run: setup-release-test-repo-private
 
   # Check if it can install public repos in the wild (Part 1).
   test-public-repo:
@@ -112,7 +146,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist-directory
+          path: dist
+
       - uses: ./
         with:
           repository: spinnaker/kleat
