@@ -1,17 +1,17 @@
-import * as core from '@actions/core'
+import * as core from "@actions/core";
 
 export interface Config {
-  name: string
+  name: string;
 }
 
 export class Provisioner {
   constructor(private cfg: Config) {}
 
   provision(folder: string): void {
-    core.addPath(folder)
+    core.addPath(folder);
   }
 }
 
 export default {
-  Provisioner
-}
+  Provisioner,
+};
