@@ -7,7 +7,7 @@ vi.mock("@actions/core");
 
 describe("provisioner", () => {
   it("provisions a folder", () => {
-    const provisioner = new Provisioner({});
+    const provisioner = new Provisioner();
 
     const folder = "folder";
     provisioner.provision(folder);

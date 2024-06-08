@@ -1,28 +1,14 @@
 import * as github from "@actions/github";
 import * as core from "@actions/core";
 import * as tc from "@actions/tool-cache";
-import {
-  ReposGetLatestReleaseResponseData,
-  ReposGetReleaseAssetResponseData,
-} from "@octokit/types";
+import { ReposGetLatestReleaseResponseData } from "@octokit/types";
 import { inspect, promisify } from "util";
 import * as stream from "stream";
 import got from "got";
 import * as fs from "fs";
+import { Config } from "./types";
+import { isTargetAsset } from "./utils/is-target-asset";
 const pipeline = promisify(stream.pipeline);
-
-export type archiveType = "tar.gz" | "zip" | "darwin";
-
-export interface Config {
-  installPath: string;
-  owner: string;
-  repo: string;
-  token: string;
-  tag: string;
-  platform: string;
-  arch: string;
-  archive: archiveType;
-}
 
 export class Downloader {
   private latest: boolean;
@@ -32,15 +18,6 @@ export class Downloader {
 
   get #cacheKey(): string {
     return `${this.cfg.owner}-${this.cfg.repo}`;
-  }
-
-  private isTargetAsset(asset: ReposGetReleaseAssetResponseData): boolean {
-    const { name } = asset;
-    return (
-      name.includes(this.cfg.platform) &&
-      name.includes(this.cfg.arch) &&
-      name.includes(this.cfg.archive)
-    );
   }
 
   async download(): Promise<string> {
@@ -75,7 +52,13 @@ export class Downloader {
 
     core.setOutput("restore-from-cache", false);
 
-    const asset = release.assets.find((a) => this.isTargetAsset(a));
+    const asset = release.assets.find((a) =>
+      isTargetAsset({
+        name: a.name,
+        arch: this.cfg.arch,
+        platform: this.cfg.platform,
+      }),
+    );
     if (!asset) {
       core.debug(`Cound not find asset ${inspect(this.cfg)}`);
       core.debug(`Asset count:${release.assets}, release:${inspect(release)}`);
@@ -123,7 +106,3 @@ export class Downloader {
     );
   }
 }
-
-export default {
-  Downloader,
-};

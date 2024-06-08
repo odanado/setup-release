@@ -1,7 +1,5 @@
-import { Downloader, Config as DownloaderConfig } from "./downloader";
-import { Provisioner, Config as ProvisionerConfig } from "./provisioner";
-
-export type Inputs = DownloaderConfig | ProvisionerConfig;
+import { Downloader } from "./downloader";
+import { Provisioner } from "./provisioner";
 
 export class Agent {
   constructor(
