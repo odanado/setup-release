@@ -69,9 +69,12 @@ export class Downloader {
     core.setOutput("asset-name", asset.name);
 
     const dest = await tc.downloadTool(
-      asset.browser_download_url,
+      asset.url,
       this.cfg.installPath ? this.cfg.installPath : undefined,
       this.cfg.token,
+      {
+        accept: "application/octet-stream",
+      },
     );
 
     core.debug(`Download asset: ${asset.name}`);
