@@ -123,22 +123,21 @@ jobs:
           repository: KeisukeYamashita/setup-release-test-repo-public
 
   # Check if it can install private repos by using the GitHub Token
-  # test-private:
-  #   name: Get Private repository release
-  #   runs-on: ubuntu-latest
-  #   needs: [build]
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - uses: actions/download-artifact@v4
-  #       with:
-  #         name: dist
-  #         path: dist
+  test-private:
+    name: Get Private repository release
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
 
-  #     - uses: ./
-  #       with:
-  #         repository: KeisukeYamashita/setup-release-test-repo-private
-  #         token: ${{ secrets.SETUP_RELEASE_GITHUB_TOKEN }}
-  #     - run: setup-release-test-repo-private
+      - uses: ./
+        with:
+          repository: odan-sandbox/setup-release-test-repo-private
+      - run: which git-pr-release-go
 
   # Check if it can install public repos in the wild (Part 1).
   test-public-repo:

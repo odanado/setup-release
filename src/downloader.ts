@@ -2,13 +2,10 @@ import * as github from "@actions/github";
 import * as core from "@actions/core";
 import * as tc from "@actions/tool-cache";
 import { ReposGetLatestReleaseResponseData } from "@octokit/types";
-import { inspect, promisify } from "util";
-import * as stream from "stream";
-import got from "got";
-import * as fs from "fs";
+import { inspect } from "util";
+
 import { Config } from "./types";
 import { isTargetAsset } from "./utils/is-target-asset";
-const pipeline = promisify(stream.pipeline);
 
 export class Downloader {
   private latest: boolean;
@@ -69,18 +66,10 @@ export class Downloader {
     core.setOutput("asset-id", asset.id);
     core.setOutput("asset-name", asset.name);
 
-    const dest = `/tmp/${this.cfg.installPath}`;
-
-    await pipeline(
-      got.stream(asset.url, {
-        method: "GET",
-        headers: {
-          "User-Agent": "GitHub Actions",
-          Accept: "application/octet-stream",
-          Authorization: `token ${this.cfg.token}`,
-        },
-      }),
-      fs.createWriteStream(dest),
+    const dest = await tc.downloadTool(
+      asset.url,
+      this.cfg.installPath ? this.cfg.installPath : undefined,
+      this.cfg.token,
     );
 
     core.debug(`Download asset: ${asset.name}`);
