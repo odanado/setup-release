@@ -1,7 +1,6 @@
 import * as core from "@actions/core";
 
 import { type Config } from "../types";
-import { uuid } from "uuidv4";
 
 function resolveArch(): Config["arch"] {
   const arch = core.getInput("arch");
@@ -58,10 +57,7 @@ export function resolveConfig(): Config {
   return {
     owner,
     repo,
-    installPath:
-      core.getInput("installPath") === ""
-        ? uuid()
-        : core.getInput("installPath"),
+    installPath: core.getInput("installPath"),
     arch: resolveArch(),
     platform: resolvePlatform(),
     name: repository.replace("/", "-"),
