@@ -68,12 +68,15 @@ export class Downloader {
     core.setOutput("asset-id", asset.id);
     core.setOutput("asset-name", asset.name);
 
+    console.log(inspect(asset, { depth: null }));
+
     const dest = await tc.downloadTool(
       asset.url,
       this.cfg.installPath ? this.cfg.installPath : undefined,
-      this.cfg.token,
+      undefined,
       {
         accept: "application/octet-stream",
+        authorization: `token ${this.cfg.token}`,
       },
     );
 
