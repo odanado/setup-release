@@ -11,7 +11,6 @@ import got from "got";
 import * as fs from "fs";
 const pipeline = promisify(stream.pipeline);
 
-const cacheKey = "release";
 export type archiveType = "tar.gz" | "zip" | "darwin";
 
 export interface Config {
@@ -29,6 +28,10 @@ export class Downloader {
   private latest: boolean;
   constructor(private cfg: Config) {
     this.latest = cfg.tag === "latest";
+  }
+
+  get #cacheKey(): string {
+    return `${this.cfg.owner}-${this.cfg.repo}`;
   }
 
   private isTargetAsset(asset: ReposGetReleaseAssetResponseData): boolean {
@@ -63,7 +66,7 @@ export class Downloader {
     core.setOutput("tag", this.cfg.tag);
 
     // check cache
-    const toolPath = tc.find(cacheKey, this.cfg.tag);
+    const toolPath = tc.find(this.#cacheKey, this.cfg.tag);
     if (toolPath) {
       core.info(`Found in cache @ ${toolPath} for tag ${this.cfg.tag}`);
       core.setOutput("restore-from-cache", true);
@@ -113,7 +116,11 @@ export class Downloader {
     }
 
     core.debug(`Cached @ ${assetExtractedFolder} for tag ${this.cfg.tag}`);
-    return await tc.cacheDir(assetExtractedFolder, cacheKey, this.cfg.tag);
+    return await tc.cacheDir(
+      assetExtractedFolder,
+      this.#cacheKey,
+      this.cfg.tag,
+    );
   }
 }
 
