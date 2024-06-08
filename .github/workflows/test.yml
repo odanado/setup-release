@@ -137,6 +137,7 @@ jobs:
       - uses: ./
         with:
           repository: odan-sandbox/setup-release-test-repo-private
+          token: ${{ secrets.CI_TEST_PAT }}
       - run: which git-pr-release-go
 
   # Check if it can install public repos in the wild (Part 1).
