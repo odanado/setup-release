@@ -5,7 +5,7 @@ inputs:
   arch:
     required: false
     description: "The asset arch target"
-    default: "amd64"
+    default: ""
   archive:
     required: false
     description: 'The extension. "tar.gz", "darwin", "zip" is supported'
@@ -21,7 +21,7 @@ inputs:
   platform:
     required: false
     description: "The asset target platform"
-    default: "linux"
+    default: ""
   tag:
     required: false
     description: "The release tag"
