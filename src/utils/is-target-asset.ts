@@ -49,5 +49,6 @@ export function isTargetAsset({
   arch: Config["arch"];
   platform: Config["platform"];
 }): boolean {
+  console.log("debug", { name, arch, platform });
   return matchArch({ name, arch }) && matchPlatform({ name, platform });
 }

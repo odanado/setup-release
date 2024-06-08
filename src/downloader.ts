@@ -57,10 +57,12 @@ export class Downloader {
       }),
     );
     if (!asset) {
-      core.debug(`Cound not find asset ${inspect(this.cfg)}`);
-      core.debug(`Asset count:${release.assets}, release:${inspect(release)}`);
+      core.debug(`Could not find asset ${inspect(this.cfg)}`);
+      core.debug(
+        `Asset count:${release.assets.length}, release:${inspect(release)}`,
+      );
       core.setOutput("matched", false);
-      throw new Error("Cound not find asset");
+      throw new Error("Could not find asset");
     }
 
     core.setOutput("asset-id", asset.id);
