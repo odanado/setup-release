@@ -35,3 +35,5 @@ jobs:
       - run: npm version ${{ github.event.inputs.type }}
 
       - run: git push --follow-tags
+
+      - run: gh release create v$(jq -r '.version' package.json)
