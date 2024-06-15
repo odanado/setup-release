@@ -6,6 +6,7 @@ on:
       type:
         required: true
         type: choice
+        default: "patch"
         options:
           - "major"
           - "minor"
