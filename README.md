@@ -1,7 +1,6 @@
 # Setup Release
 
-[![CI][ci]][ci-status]
-[![GitHub Marketplace][marketplace]][marketplace-status]
+![example workflow](https://github.com/odanado/setup-release/actions/workflows/test.yml/badge.svg)
 
 Forked from [KeisukeYamashita/setup-release](https://github.com/KeisukeYamashita/setup-release).
 
