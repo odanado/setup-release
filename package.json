@@ -1,6 +1,6 @@
 {
   "name": "setup-release",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "type": "module",
   "private": true,
   "description": "GitHub Action that downloads a release and provision for later job usage",
