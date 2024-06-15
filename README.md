@@ -2,7 +2,6 @@
 
 [![CI][ci]][ci-status]
 [![GitHub Marketplace][marketplace]][marketplace-status]
-[![Mergify Status][mergify-status]][mergify]
 
 Forked from [KeisukeYamashita/setup-release](https://github.com/KeisukeYamashita/setup-release).
 
