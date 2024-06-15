@@ -13,7 +13,7 @@ You don't need to download assets and extract, add system pathes, this action wi
 
 ```yml
 - name: Get conftest CLI
-  uses: odanado/setup-release@v1.0.2
+  uses: odanado/setup-release@v0
   with:
     repository: open-policy-agent/conftest
 ```
@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: odanado/setup-release@v1.0.2
+      - uses: odanado/setup-release@v0
         with:
           repository: spinnaker/kleat
           tag: v0.3.0
@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: odanado/setup-release@v1.0.2
+      - uses: odanado/setup-release@v0
         with:
           repository: spinnaker/kleat
       # Use the "kleat" command in the later steps
