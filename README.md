@@ -2,6 +2,8 @@
 
 ![example workflow](https://github.com/odanado/setup-release/actions/workflows/test.yml/badge.svg)
 
+**This repository is archived. Please use https://github.com/jdx/mise-action and https://mise.jdx.dev/dev-tools/backends/github.html.**
+
 Forked from [KeisukeYamashita/setup-release](https://github.com/KeisukeYamashita/setup-release).
 
 A GitHub Action that downloads a release and provision for later job usage.
